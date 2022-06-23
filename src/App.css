@@ -2,15 +2,15 @@
 
 .App {
   text-align: center;
-  
+  overflow: hidden;
 }
 
+
 .editor {
-  width:70vw;
+  
   height:90vh;
   border:1px solid rgb(37, 37, 37);
   border-radius: 3px;
-  float:right;
 }
 
 .list-item {
@@ -67,4 +67,36 @@
 
 .node-name {
   border-top:1px dashed rgba(0, 0, 0, 0.288);
+}
+
+
+.dsp-list {
+  height:90vh;
+  overflow-y: scroll;
+  
+  border-radius: 3px;
+}
+
+.list-container {
+  height: 90vh;
+  overflow-y: hidden;
+  border:1px solid black;
+}
+
+
+.react-flow__edge-path-selector:hover { cursor: pointer }
+.react-flow__edge-path-selector:hover + .react-flow__edge-path, .react-flow__edge-path:hover  {
+    stroke: #555;
+    cursor: pointer;
+}
+
+.react-flow__edge-path-selector {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 8;
+}
+
+.react-flow__edge.selected {
+  stroke:aquamarine;
+  border:1px solid red;
 }

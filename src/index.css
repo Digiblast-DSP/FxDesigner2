@@ -9,7 +9,7 @@ body {
 }
 
 html {
-  background-color: rgb(53, 53, 53);
+  overflow-y: hidden;
 }
 
 code {

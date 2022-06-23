@@ -7,8 +7,9 @@ export default memo(({ data, isConnectable }) => {
             <Handle
                 type='target'
                 position='top'
-                style={{left:'8%'}}
+                style={{left:'10%'}}
                 isConnectable={true}
+                id='a'
             >
                 <p className='param-text'>x</p>
             </Handle>
@@ -16,8 +17,9 @@ export default memo(({ data, isConnectable }) => {
              <Handle
                 type='target'
                 position='top'
-                style={{left:'24%'}}
+                style={{left:'50%'}}
                 isConnectable={true}
+                id='b'
             >            
                 <p className='param-text'>f</p>
             </Handle>
