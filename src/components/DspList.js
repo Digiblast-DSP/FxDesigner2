@@ -1,11 +1,14 @@
+import { getAllFunctions } from '../lang/FuncData';
 import DspListItem from './DspListItem'
 
 function DspList() {
 
     function generateList() {
-        const list = [];
-        for (let i = 0; i < 50; i++) {
-            list.push(<DspListItem name='sin' key={i}></DspListItem>);
+        const fList = getAllFunctions();
+        console.log(fList);
+        const list = []
+        for (let i = 0; i < fList.length; i++) {
+            list.push(<DspListItem data={fList[i]} key={i}></DspListItem>);
         }
         return list;
     }

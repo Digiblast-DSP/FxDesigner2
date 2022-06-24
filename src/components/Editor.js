@@ -15,7 +15,9 @@ const initialNodes = [
 {
     id: '1',
     type: 'input',
-    data: { label: 'Input Node' },
+    selectable:false,
+    className:'io-node',
+    data: { label: 'Input' },
     position: { x: 250, y: 25 },
 },
 
@@ -30,7 +32,9 @@ const initialNodes = [
 {
     id: '3',
     type: 'output',
-    data: { label: 'Output Node' },
+    data: { label: 'Output' },
+    className:'io-node',
+    selectable:false,
     position: { x: 250, y: 250 },
 },
 ];

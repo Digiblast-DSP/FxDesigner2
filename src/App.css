@@ -1,8 +1,12 @@
-
+@font-face {
+  font-family: nunito;
+  src: url('./nunito.ttf');
+}
 
 .App {
   text-align: center;
   overflow: hidden;
+  font-family: nunito;
 }
 
 
@@ -52,6 +56,15 @@
   box-shadow: 1px 1px 0px #999;
 }
 
+.io-node {
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,211,220,1) 100%); 
+  padding:0px;
+  border:1px solid black;
+  border-radius: 4px;
+  font-size: 10px;
+  box-shadow: 1px 1px 0px #999;
+}
+
 .param-text2 {
   padding:0px;
   border: 1px solid magenta;
@@ -63,6 +76,7 @@
   color:black;
   margin-top: 3px;
   font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .node-name {
