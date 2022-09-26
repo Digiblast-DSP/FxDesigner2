@@ -1,5 +1,5 @@
 import './App.css';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, MarkerType } from 'react-flow-renderer';
 import DspNode from './nodes/DspNode';
 import WireEdge from './nodes/WireEdge';
@@ -46,6 +46,8 @@ function App() {
   const [edges, setEdges] = useState(initialEdges);
   const [idCounter, setIdCounter] = useState(0);
 
+  
+
   const onNodesChange = useCallback(
       (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
       [setNodes]
@@ -68,6 +70,7 @@ function App() {
               return eds;
             }
             console.log('CAN', target);
+            
             return addEdge(connection, eds);
           });
       },

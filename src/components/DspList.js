@@ -1,11 +1,29 @@
 import { getAllFunctions } from '../lang/FuncData';
 import DspListItem from './DspListItem'
+import { ConfigParser } from '../lang/ConfigParser'
+import { useEffect, useState } from 'react';
 
 function DspList({createNode}) {
 
+    let [fList, setFList] = useState(undefined);
+    
+    let cfgParser = new ConfigParser();
+    
+    useEffect(() => {
+        async function getFunctions() {
+            await cfgParser.parse();
+            setFList(cfgParser.functions);
+        }
+
+        if (!fList) {
+            getFunctions();
+        }
+    }, []);
+
     function generateList() {
-        const fList = getAllFunctions();
         
+        if (!fList) return;
+
         const list = []
         for (let i = 0; i < fList.length; i++) {
             list.push(<DspListItem data={fList[i]} key={i} createNode={createNode}></DspListItem>);
