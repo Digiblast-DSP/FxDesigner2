@@ -7,6 +7,8 @@ import DspList from './components/DspList';
 import Editor from './components/Editor';
 import { v4 as uuidv4 } from 'uuid';
 import { SIN } from './lang/FuncData';
+import { ActionBar } from './components/ActionBar';
+import { NodeParser } from './lang/NodeParser';
 
 const nodeTypes = {
   dspNode: DspNode,
@@ -97,9 +99,16 @@ function App() {
     setNodes(nodeList);
   }
 
+  function compile() {
+    let nodeParser = new NodeParser();
+    nodeParser.build(nodes, edges);
+  }
+
   return (
     <div className='App'>
+      
       <div className='section mt-0 pt-5'>
+        <ActionBar compile={compile}/>
         <div className="columns">
 
           <div className="column">

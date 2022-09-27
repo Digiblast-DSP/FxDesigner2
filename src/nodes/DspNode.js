@@ -15,7 +15,7 @@ export default memo(({ data, isConnectable }) => {
                 position='top'
                 style={{left:`${10+margin*i}%`}}
                 isConnectable={true}
-                id={`in-${data.name + i}-${data.id}`}
+                id={`in-${data.name}-${data.id}-${i}`}
                 key={i}
 
                 >

@@ -97,6 +97,32 @@
   border:1px solid black;
 }
 
+.action-bar {
+  padding: 10px;
+}
+
+.action-bar-button {
+  border:1px solid black;
+  width:8vw;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #222;
+  color:black;
+}
+
+.action-bar-button:hover {
+  filter: brightness(95%);
+}
+
+.action-bar-button:active {
+  filter: brightness(85%);
+  box-shadow: 1px 1px 0px #222;
+}
+
+.compile-button {
+  background-color: rgb(181, 228, 163);
+  border-color: rgb(0, 48, 0);
+}
+
 
 .react-flow__edge-path-selector:hover { cursor: pointer }
 .react-flow__edge-path-selector:hover + .react-flow__edge-path, .react-flow__edge-path:hover  {
