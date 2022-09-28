@@ -11,20 +11,33 @@ class GraphNode {
 class Graph {
     constructor() {
         this.head = new GraphNode(-1, undefined, undefined);
-        this.visited = {};
+        this.code = "";
     }
 
-    traverse(node) {
-        //this.visited = {};
+    generateCode(node) {
+        this.code = "import(\"stdfaust.lib\");\nprocess = ";
         console.log("traversing", node.id);
         this.#multiPreorder(node);
+        this.code += ";"
+        alert(this.code);
     }
 
     #multiPreorder(node) {
         if (node === undefined) {
             return;
         }
-        console.log(node.id);
+        console.log(node.id, node.func.name);
+
+        let includeClosingBrace = true;
+
+        if (node.func.name !== undefined) {
+            this.code += node.func.name + "(";
+        } else {
+            if (node.id === "IN") {
+                this.code += "_";
+            }
+            includeClosingBrace = false;
+        }
 
         if (node.parents.length === undefined) {
             this.#multiPreorder(undefined);
@@ -33,6 +46,12 @@ class Graph {
 
         for (let i = 0; i < inputNodeCount; i++) {
             this.#multiPreorder(node.parents[i]);
+            if (i < inputNodeCount - 1) {
+                this.code += ",";
+            }
+        }
+        if (includeClosingBrace) {
+            this.code += ")";
         }
     }
 }
@@ -80,6 +99,6 @@ export class NodeParser {
         console.table(nodeDist);
         console.log(this.graph.head);
 
-        this.graph.traverse(nodeDist['OUT']);
+        this.graph.generateCode(nodeDist['OUT']);
     }
 }

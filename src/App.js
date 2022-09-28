@@ -60,14 +60,15 @@ function App() {
   );
   const onConnect = useCallback(
       (connection) => {
-          
+          console.log(connection);
           connection.type = 'wire';
           connection.markerEnd = { type: MarkerType.ArrowClosed};
           setEdges((eds) => {
 
             const target = connection.targetHandle;
             // cancel the connection if the input already has an incoming wire
-            if (eds.some( x => x.targetHandle && x.targetHandle === target)) {
+            if (eds.some( x => x.targetHandle && x.targetHandle === target)
+                || eds.some(x => x.target === "OUT")) { // or disallow output from having multiple inputs
               console.log('CANT', eds, target);
               return eds;
             }
