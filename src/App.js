@@ -68,7 +68,7 @@ function App() {
             const target = connection.targetHandle;
             // cancel the connection if the input already has an incoming wire
             if (eds.some( x => x.targetHandle && x.targetHandle === target)
-                || eds.some(x => x.target === "OUT")) { // or disallow output from having multiple inputs
+                || eds.some(x => x.target === "OUT" && connection.target === "OUT")) { // or disallow output from having multiple inputs
               console.log('CANT', eds, target);
               return eds;
             }
