@@ -4,6 +4,7 @@ import { Handle } from 'react-flow-renderer';
 export default memo(({ data, isConnectable }) => {
     
     function createHandles() {
+        
         let list = [];
         const margin = 90 / (data.paramNames.length);
 

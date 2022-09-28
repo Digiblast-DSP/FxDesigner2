@@ -9,9 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { SIN } from './lang/FuncData';
 import { ActionBar } from './components/ActionBar';
 import { NodeParser } from './lang/NodeParser';
+import ConstantNode from './nodes/ConstantNode';
 
 const nodeTypes = {
   dspNode: DspNode,
+  constantNode: ConstantNode
 };
 const edgeTypes = {
   wire: WireEdge,
@@ -47,8 +49,9 @@ function App() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const [idCounter, setIdCounter] = useState(0);
+  const [history, setHistory] = useState(0);
 
-  
+  useEffect(() => {console.log('id', history)}, [history])
 
   const onNodesChange = useCallback(
       (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -72,7 +75,7 @@ function App() {
               console.log('CANT', eds, target);
               return eds;
             }
-            console.log('CAN', target);
+            console.log('CAN', nodes);
             
             return addEdge(connection, eds);
           });
@@ -82,8 +85,30 @@ function App() {
 
   document.addEventListener('contextmenu', event => event.preventDefault());
 
-  
+  function changeConstantNodeValue(id, e) {
+    const value = e.target.value;
+    console.log('Constant value change: ', idCounter, history, nodes);
+    setHistory(history + 1);
+    /* let nodeIndex = nodes.findIndex(x => x.id === id);
+    //console.log(nodeIndex, id);
+    let nCopy = [...nodes];
+    console.log(nCopy, nodes);
+    nCopy[nodeIndex].data.value = value; */
+    
+    
+    //nCopy[id].data = value;
+    //setNodes(nCopy);
+  }    
+
+  /**
+   * 
+   * @param {FuncData | String} data 
+   */
   function createNode(data) {
+    if (data === "constant") {
+      createConstantNode();
+      return;
+    }
     const ID = `${idCounter}`;
     const dataClone = structuredClone(data);
     dataClone.id = ID;
@@ -100,8 +125,28 @@ function App() {
     setNodes(nodeList);
   }
 
+  function createConstantNode() {
+    const ID = `${idCounter}`;
+    setIdCounter(idCounter+1);
+    const newNode = {
+      id: ID,
+      type:'constantNode',
+      data: {
+        value:0,
+        onChange:changeConstantNodeValue
+      },
+      className:'test',
+      position: { x: 50*Math.random()-50, y: 50*Math.random()-50 },
+    };
+    const nodeList = [...nodes];
+    nodeList.push(newNode);
+    console.log(nodeList);
+    setNodes(nodeList);
+  }
+
   function compile() {
     let nodeParser = new NodeParser();
+    console.table(nodes);
     nodeParser.build(nodes, edges);
   }
 
