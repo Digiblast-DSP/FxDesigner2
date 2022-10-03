@@ -49,9 +49,9 @@ function App() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const [idCounter, setIdCounter] = useState(0);
-  const [history, setHistory] = useState(0);
+  const [constValues, setConstValues] = useState({});
 
-  useEffect(() => {console.log('id', history)}, [history])
+  useEffect(() => {console.log('CVs:', constValues)}, [constValues])
 
   const onNodesChange = useCallback(
       (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -85,15 +85,19 @@ function App() {
 
   document.addEventListener('contextmenu', event => event.preventDefault());
 
-  function changeConstantNodeValue(id, e) {
-    const value = e.target.value;
-    console.log('Constant value change: ', idCounter, history, nodes);
-    setHistory(history + 1);
+  function changeConstantNodeValue(id, val) {
+    //const value = e.target.value;
+    console.log('Constant value change: ', id, val, nodes);
+    let nVs = {...constValues};
+    nVs[id] = val;
+    //console.log(nVs, constValues);
+    setConstValues(nVs);
+    //setHistory(history + 1);
     /* let nodeIndex = nodes.findIndex(x => x.id === id);
     //console.log(nodeIndex, id);
     let nCopy = [...nodes];
     console.log(nCopy, nodes);
-    nCopy[nodeIndex].data.value = value; */
+    nCopy[nodeIndex].data.value = val; */
     
     
     //nCopy[id].data = value;
@@ -147,7 +151,7 @@ function App() {
   function compile() {
     let nodeParser = new NodeParser();
     console.table(nodes);
-    nodeParser.build(nodes, edges);
+    nodeParser.build(nodes, edges, constValues);
   }
 
   return (

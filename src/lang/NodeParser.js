@@ -1,3 +1,4 @@
+import { PREFIXES } from "./Cats";
 import FuncData from "./FuncData";
 
 class GraphNode {
@@ -31,10 +32,13 @@ class Graph {
         let includeClosingBrace = true;
 
         if (node.func.name !== undefined) {
-            this.code += node.func.name + "(";
+            const prefix = PREFIXES[node.func.category];
+            this.code += prefix + node.func.name + "(";
         } else {
             if (node.id === "IN") {
                 this.code += "_";
+            } else if (node.id !== "OUT"){
+                this.code += node.func;
             }
             includeClosingBrace = false;
         }
@@ -61,7 +65,7 @@ export class NodeParser {
         this.graph = new Graph();
     }
 
-    build(nodes, edges) {
+    build(nodes, edges, constValues) {
         console.table(nodes);
         console.table(edges);
 
@@ -69,7 +73,11 @@ export class NodeParser {
 
         for (let i = 0; i < nodes.length; i++) {
             const n = nodes[i];
-            nodeDist[n.id] = new GraphNode(n.id, {}, n.data);
+            let data = n.data;
+            if (n.type === "constantNode") {
+                data = constValues[n.id];
+            }
+            nodeDist[n.id] = new GraphNode(n.id, {}, data);
         }
         
 
