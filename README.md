@@ -1,4 +1,4 @@
-![Sample Screenshot]("/public/sample.png")
+![Sample Screenshot]("./public/sample.png")
 
 A program for visually programming audio effects and plugins. Your graphs get compiled to FAUST code.
 
