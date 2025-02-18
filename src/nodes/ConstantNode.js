@@ -3,9 +3,17 @@ import { Handle } from 'react-flow-renderer';
 
 export default memo(({ data, isConnectable, id}) => {
 
+    const [value, setValue] = useState(0);
 
     const onValueChange = (e) => {
-        data.onChange(id, e);
+        const v = e.target.value;
+        setValue(v);
+
+        data.onChange(id, v);
+    }
+
+    const getValue = () => {
+        return value;
     }
 
     return (
@@ -13,7 +21,6 @@ export default memo(({ data, isConnectable, id}) => {
             
             {/* <div className='node-name'>{data}</div> */}
             <EditableValue value={data.value} onValueChange={onValueChange}/>
-            <p>{id}</p>
             <Handle
                 type='source'
                 position='bottom'
