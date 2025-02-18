@@ -5,8 +5,6 @@ import DspNode from './nodes/DspNode';
 import WireEdge from './nodes/WireEdge';
 import DspList from './components/DspList';
 import Editor from './components/Editor';
-import { v4 as uuidv4 } from 'uuid';
-import { SIN } from './lang/FuncData';
 import { ActionBar } from './components/ActionBar';
 import { NodeParser } from './lang/NodeParser';
 import ConstantNode from './nodes/ConstantNode';

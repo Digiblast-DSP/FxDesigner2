@@ -1,3 +1,7 @@
+![Sample Screenshot]("/public/sample.png")
+
+A program for visually programming audio effects and plugins. Your graphs get compiled to FAUST code.
+
 # Prototype 2 of the Effect Designer GUI Program
 - React.js app running in Tauri desktop container
 
